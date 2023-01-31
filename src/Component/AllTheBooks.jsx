@@ -11,7 +11,7 @@ class AllTheBooks extends Component{
                     {items.map((singleBook) =>{
                         return(
                             <Col xs={12} sm={12} md={6} lg={3} className="d-flex mb-lg-4 mb-md-4 mb-sm-3 mb-xs-3" >
-                                <Card>
+                                <Card className="w-100">
                                     <Card.Img variant="top" src={singleBook.img} alt={singleBook.title} height="300px" />
                                     <Card.Body>
                                       <Card.Title className="text-truncate">{singleBook.title}</Card.Title>

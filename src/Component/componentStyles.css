@@ -1,9 +1,16 @@
+.container {
+  padding-inline: 30px;
+}
 .navbar {
   background-color: #610bd9;
 }
-.navbar-light .navbar-brand,
+
 .navbar-light .navbar-nav .nav-link {
   color: white;
+}
+.navbar-light .navbar-brand {
+  color: #d0f222;
+  font-weight: bolder;
 }
 .navbar-light .navbar-nav .nav-link:hover {
   color: #d0f222;
@@ -31,6 +38,20 @@ h1,
 }
 .price-text {
   color: #610bd9;
+}
+.footer {
+  background-color: #d0f222;
+  color: black;
+}
+.ftr-text {
+  max-width: 300px;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.footer-link {
+  color: black;
 }
 @media (min-width: 992px) {
   .container {
