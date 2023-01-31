@@ -24,6 +24,10 @@
   background-color: #26d6a7;
   border-color: #26d6a7;
 }
+.btn-success:focus {
+  background-color: #26d6a7;
+  border-color: #26d6a7;
+}
 .jumbotron {
   background-color: #610bd9;
   color: white;
