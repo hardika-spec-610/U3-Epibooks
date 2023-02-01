@@ -22,24 +22,24 @@ class singleBook extends Component {
           height="300px"
         />
         <Card.Body>
-          <Card.Title className="text-truncate">
-            {this.props.singleBook.title}
-          </Card.Title>
+          <Card.Title>{this.props.singleBook.title}</Card.Title>
         </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem className="d-flex justify-content-between pb-0">
-            <Card.Text className="font-weight-bold">Category</Card.Text>
+        <div className="mt-auto">
+          <ListGroup className="list-group-flush">
+            <ListGroupItem className="d-flex justify-content-between pb-0">
+              <Card.Text className="font-weight-bold">Category</Card.Text>
+              <Card.Text className="price-text font-weight-bold">
+                {this.props.singleBook.category}
+              </Card.Text>
+            </ListGroupItem>
+          </ListGroup>
+          <Card.Body className="d-flex justify-content-between pb-0 pt-2">
+            <Card.Text className="font-weight-bold">Price</Card.Text>
             <Card.Text className="price-text font-weight-bold">
-              {this.props.singleBook.category}
+              {this.props.singleBook.price}
             </Card.Text>
-          </ListGroupItem>
-        </ListGroup>
-        <Card.Body className="d-flex justify-content-between pb-0 pt-2">
-          <Card.Text className="font-weight-bold">Price</Card.Text>
-          <Card.Text className="price-text font-weight-bold">
-            {this.props.singleBook.price}
-          </Card.Text>
-        </Card.Body>
+          </Card.Body>
+        </div>
       </Card>
     );
   }
