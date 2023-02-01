@@ -1,21 +1,14 @@
 import { Component } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import fantasy from "../books/fantasy.json";
 import history from "../books/history.json";
 import horror from "../books/horror.json";
 import romance from "../books/romance.json";
 import scifi from "../books/scifi.json";
+import SingleBook from "./SingleBook";
 import "./componentStyles.css";
 
-class AllTheBooks extends Component {
+class BookList extends Component {
   state = {
     selectedBookCategory: fantasy,
   };
@@ -68,38 +61,17 @@ class AllTheBooks extends Component {
           Scifi
         </Button>
         <Row>
-          {this.state.selectedBookCategory.map((singleBook) => {
+          {this.state.selectedBookCategory.map((currentBook) => {
             return (
               <Col
-                key={singleBook.asin}
+                key={currentBook.asin}
                 xs={12}
                 sm={12}
                 md={6}
                 lg={3}
                 className="d-flex mb-lg-4 mb-md-4 mb-sm-3 mb-xs-3"
               >
-                <Card className="w-100 shadow-sm">
-                  <Card.Img
-                    variant="top"
-                    src={singleBook.img}
-                    alt={singleBook.title}
-                    height="300px"
-                  />
-                  <Card.Body>
-                    <Card.Title className="text-truncate">
-                      {singleBook.title}
-                    </Card.Title>
-                  </Card.Body>
-                  <ListGroup className="list-group-flush">
-                    <ListGroupItem>{singleBook.category}</ListGroupItem>
-                  </ListGroup>
-                  <Card.Body className="d-flex justify-content-between pb-0">
-                    <Card.Text className="font-weight-bold">Price</Card.Text>
-                    <Card.Text className="price-text font-weight-bold">
-                      {singleBook.price}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
+                <SingleBook singleBook={currentBook} />
               </Col>
             );
           })}
@@ -109,4 +81,4 @@ class AllTheBooks extends Component {
   }
 }
 
-export default AllTheBooks;
+export default BookList;
