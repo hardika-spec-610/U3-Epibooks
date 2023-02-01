@@ -37,6 +37,9 @@ h1,
 .hero-text {
   max-width: 800px;
 }
+.list-group-item {
+  background-color: transparent;
+}
 .card-img {
   width: 100%;
 }
