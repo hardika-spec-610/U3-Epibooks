@@ -86,7 +86,7 @@ class BookList extends Component {
                   key={currentBook.asin}
                   xs={12}
                   sm={12}
-                  md={4}
+                  md={6}
                   lg={3}
                   className="d-flex mb-lg-4 mb-md-4 mb-sm-3 mb-xs-3"
                 >

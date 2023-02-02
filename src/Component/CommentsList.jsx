@@ -5,16 +5,15 @@ import SingleComment from "./SingleComment";
 class CommentsList extends Component {
   render() {
     return (
-      <ListGroup>
-        {this.props.commentsArray &&
-          this.props.commentsArray.length > 0 &&
-          this.props.commentsArray.map((comment) => (
-            <SingleComment
-              commentData={comment}
-              key={this.props.commentsArray._id}
-            />
-          ))}
-      </ListGroup>
+      <>
+        <ListGroup>
+          {this.props.commentsArray &&
+            this.props.commentsArray.length > 0 &&
+            this.props.commentsArray.map((comment) => (
+              <SingleComment key={comment._id} commentData={comment} />
+            ))}
+        </ListGroup>
+      </>
     );
   }
 }
