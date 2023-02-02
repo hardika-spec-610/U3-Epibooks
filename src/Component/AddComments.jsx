@@ -37,9 +37,13 @@ class AddComments extends Component {
   render() {
     return (
       <Form
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         onSubmit={(e) => {
           // console.log('form is submitting...', e)
           e.preventDefault();
+
           this.sendComment();
         }}
       >

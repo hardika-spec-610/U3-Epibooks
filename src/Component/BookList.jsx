@@ -88,7 +88,7 @@ class BookList extends Component {
                   sm={12}
                   md={6}
                   lg={3}
-                  className="d-flex mb-lg-4 mb-md-4 mb-sm-3 mb-xs-3"
+                  className=" mb-lg-4 mb-md-4 mb-sm-3 mb-xs-3"
                 >
                   <SingleBook singleBook={currentBook} />
                 </Col>

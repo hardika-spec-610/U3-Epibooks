@@ -90,7 +90,6 @@ class CommentArea extends Component {
                 <ListGroup.Item>Rating: {singleComment.rate}</ListGroup.Item>
                 <ListGroup.Item>
                   <ListGroup.Item>
-                    {" "}
                     <Button
                       variant="danger"
                       onClick={() => {
