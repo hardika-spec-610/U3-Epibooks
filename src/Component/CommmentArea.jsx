@@ -1,6 +1,7 @@
 import { Component } from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import { Button, Card, ListGroup } from "react-bootstrap";
 import AddComments from "./AddComments";
+import { MdDelete } from "react-icons/md";
 
 class CommentArea extends Component {
   state = {
@@ -31,6 +32,23 @@ class CommentArea extends Component {
     }
   };
 
+  deleteComment = async (commentId) => {
+    try {
+      await fetch(
+        `https://striveschool-api.herokuapp.com/api/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2M5M2FjZGU3MzczODAwMTUzNzQzOGIiLCJpYXQiOjE2NzQ1NTYzNjgsImV4cCI6MTY3NTc2NTk2OH0.oOhKfDMa6Rrq8nZX2NU7dxrUGXvr2aQdXLOkGapH9UE",
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   componentDidMount() {
     this.getComments();
   }
@@ -47,6 +65,19 @@ class CommentArea extends Component {
                   Comment: {singleComment.comment}
                 </ListGroup.Item>
                 <ListGroup.Item>Rating: {singleComment.rate}</ListGroup.Item>
+                <ListGroup.Item>
+                  <ListGroup.Item>
+                    {" "}
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        this.deleteComment(singleComment._id);
+                      }}
+                    >
+                      <MdDelete />
+                    </Button>
+                  </ListGroup.Item>
+                </ListGroup.Item>
               </ListGroup>
             </Card>
           ))
