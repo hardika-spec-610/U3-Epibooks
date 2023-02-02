@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import CommentArea from "./CommmentArea";
 import "./componentStyles.css";
 
 class singleBook extends Component {
@@ -40,6 +41,10 @@ class singleBook extends Component {
             </Card.Text>
           </Card.Body>
         </div>
+        {this.state.selected === true && (
+          <CommentArea asinID={this.props.singleBook.asin} />
+        )}
+        {/* short-circuit method */}
       </Card>
     );
   }
