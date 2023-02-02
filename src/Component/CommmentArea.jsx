@@ -26,6 +26,8 @@ class CommentArea extends Component {
         let data = await response.json();
         console.log("data", data);
         this.setState({ comment: data });
+      } else {
+        alert("Something wrong");
       }
     } catch (e) {
       console.error(e);
@@ -37,9 +39,16 @@ class CommentArea extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="p-2">
         <h4>Comments</h4>
-        <CommentsList commentsArray={this.state.comment} />
+        {this.state.comment && this.state.comment.length > 0 ? (
+          <CommentsList commentsArray={this.state.comment} />
+        ) : (
+          "Not comment yet"
+        )}
+        {/* {this.state.comment && this.state.comment.length > 0 && (
+          <CommentsList commentsArray={this.state.comment} />
+        )} */}
       </div>
     );
   }
