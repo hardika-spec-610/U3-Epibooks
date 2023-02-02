@@ -1,11 +1,13 @@
 import { Component } from "react";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Alert, Button, Card, ListGroup, Spinner } from "react-bootstrap";
 import AddComments from "./AddComments";
 import { MdDelete } from "react-icons/md";
 
 class CommentArea extends Component {
   state = {
     comment: [],
+    isLoading: true, // now I want to bind the UI with it, the Spinner!
+    isError: false,
   };
 
   getComments = async () => {
@@ -23,18 +25,25 @@ class CommentArea extends Component {
       if (response.ok) {
         let data = await response.json();
         console.log("data", data);
-        this.setState({ comment: [data] });
+        this.setState({ comment: [data], isLoading: false });
       } else {
-        alert("Something wrong");
+        this.setState({
+          isLoading: false,
+          isError: true,
+        });
       }
     } catch (e) {
       console.error(e);
+      this.setState({
+        isLoading: false,
+        isError: true,
+      });
     }
   };
 
   deleteComment = async (commentId) => {
     try {
-      await fetch(
+      let response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${commentId}`,
         {
           method: "DELETE",
@@ -44,6 +53,14 @@ class CommentArea extends Component {
           },
         }
       );
+      if (response.ok) {
+        this.setState({ isLoading: false });
+      } else {
+        this.setState({
+          isLoading: false,
+          isError: true,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -56,6 +73,12 @@ class CommentArea extends Component {
     return (
       <div>
         <h4>Comments</h4>
+        {this.state.isLoading && ( // isLoading is true or false
+          <Spinner animation="border" variant="success" />
+        )}
+        {this.state.isError && (
+          <Alert variant="danger">Aww snap, we got an error!😨</Alert>
+        )}
         {this.state.comment.map((data) =>
           data.map((singleComment) => (
             <Card key={singleComment._id}>
