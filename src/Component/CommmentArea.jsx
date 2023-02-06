@@ -56,6 +56,7 @@ class CommentArea extends Component {
       );
       if (response.ok) {
         this.setState({ isLoading: false });
+        this.updateCommentPost();
       } else {
         this.setState({
           isLoading: false,
