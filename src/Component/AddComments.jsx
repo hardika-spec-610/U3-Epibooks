@@ -1,8 +1,9 @@
 import { Component } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 
 class AddComments extends Component {
   state = {
+    submit: false,
     commentsObject: {
       comment: [],
       rate: "",
@@ -25,9 +26,17 @@ class AddComments extends Component {
       );
       console.log("post res", response);
       if (response.ok) {
-        alert("submitted :)");
+        // this.setState({
+        //   commentsObject: {
+        //     comment: [],
+        //     rate: "",
+        //   },
+        // });
+        this.setState({ submit: true });
+        // alert("submitted :)");
       } else {
         alert("problem accepting your comment :(");
+        console.log("elementID", this.state.commentsObject.elementId);
       }
     } catch (e) {
       console.error(e);
@@ -36,57 +45,60 @@ class AddComments extends Component {
 
   render() {
     return (
-      <Form
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        onSubmit={(e) => {
-          // console.log('form is submitting...', e)
-          e.preventDefault();
+      <>
+        {this.state.submit && <Alert variant="success">Comment added</Alert>}
+        <Form
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          onSubmit={(e) => {
+            // console.log('form is submitting...', e)
+            e.preventDefault();
 
-          this.sendComment();
-        }}
-      >
-        <Form.Group>
-          <Form.Label>Comment</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            required
-            placeholder="Send your comment"
-            value={this.state.commentsObject.comment}
-            onChange={(event) => {
-              this.setState({
-                commentsObject: {
-                  ...this.state.commentsObject,
-                  comment: event.target.value,
-                },
-              });
-            }}
-          />
-        </Form.Group>
+            this.sendComment();
+          }}
+        >
+          <Form.Group>
+            <Form.Label>Comment</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              required
+              placeholder="Send your comment"
+              value={this.state.commentsObject.comment}
+              onChange={(event) => {
+                this.setState({
+                  commentsObject: {
+                    ...this.state.commentsObject,
+                    comment: event.target.value,
+                  },
+                });
+              }}
+            />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Rating</Form.Label>
-          <Form.Control
-            type="text"
-            required
-            placeholder="Rating 1-5"
-            value={this.state.commentsObject.rate}
-            onChange={(event) => {
-              this.setState({
-                commentsObject: {
-                  ...this.state.commentsObject,
-                  rate: event.target.value,
-                },
-              });
-            }}
-          />
-        </Form.Group>
-        <Button variant="info" type="submit">
-          Submit
-        </Button>
-      </Form>
+          <Form.Group>
+            <Form.Label>Rating</Form.Label>
+            <Form.Control
+              type="text"
+              required
+              placeholder="Rating 1-5"
+              value={this.state.commentsObject.rate}
+              onChange={(event) => {
+                this.setState({
+                  commentsObject: {
+                    ...this.state.commentsObject,
+                    rate: event.target.value,
+                  },
+                });
+              }}
+            />
+          </Form.Group>
+          <Button variant="info" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </>
     );
   }
 }

@@ -11,11 +11,11 @@ import CommentArea from "./Component/CommmentArea";
 
 class App extends Component {
   state = {
-    asin: "",
+    bookAsin: "",
   };
   selectedBook = (newBook) => {
     console.log("newBook", newBook);
-    this.setState({ asin: newBook });
+    this.setState({ bookAsin: newBook });
   };
   render() {
     return (
@@ -31,8 +31,8 @@ class App extends Component {
             </Col>
             <Col xs={12} sm={12} md={6} lg={6}>
               {" "}
-              <div>
-                <CommentArea bookAsin={this.state.asin} />
+              <div className="sticky-top">
+                <CommentArea bookAsin={this.state.bookAsin} />
               </div>
             </Col>
           </Row>

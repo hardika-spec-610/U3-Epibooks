@@ -10,7 +10,7 @@ class CommentArea extends Component {
     isError: false,
   };
 
-  getComments = async (bookAsin) => {
+  getComments = async () => {
     try {
       let response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${this.props.bookAsin}`,
@@ -68,14 +68,14 @@ class CommentArea extends Component {
   };
 
   componentDidMount() {
-    this.getComments(this.props.bookAsin);
+    this.getComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log("PREVIOUS PROPS", prevProps);
     console.log("CURRENT PROPS", this.props);
     if (prevProps.bookAsin !== this.props.bookAsin) {
-      this.getComments(this.props.bookAsin);
+      this.getComments();
     }
   }
 
@@ -89,43 +89,53 @@ class CommentArea extends Component {
         {this.state.isError && (
           <Alert variant="danger">Aww snap, we got an error!😨</Alert>
         )}
-        {this.props.bookAsin !== "" && (
+        {this.props.bookAsin === "" ? (
+          "Please select a book to view the comments.."
+        ) : (
           <>
-            {this.state.comment.length > 0 && this.state.comment ? (
+            {this.props.bookAsin !== "" && (
               <>
-                {this.state.comment.map((singleComment) => (
-                  <Card key={singleComment._id}>
-                    <Card.Header>Author: {singleComment.author}</Card.Header>
-                    <ListGroup variant="flush">
-                      <ListGroup.Item>
-                        Comment: {singleComment.comment}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        Rating: {singleComment.rate}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        <ListGroup.Item>
-                          <Button
-                            variant="danger"
-                            onClick={() => {
-                              this.deleteComment(singleComment._id);
-                            }}
-                          >
-                            <MdDelete />
-                          </Button>
-                        </ListGroup.Item>
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card>
-                ))}
+                {this.state.comment.length > 0 && this.state.comment ? (
+                  <>
+                    {this.state.comment.map((singleComment) => (
+                      <Card key={singleComment._id}>
+                        <Card.Header>
+                          Author: {singleComment.author}
+                        </Card.Header>
+                        <ListGroup variant="flush">
+                          <ListGroup.Item>
+                            Comment: {singleComment.comment}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            Rating: {singleComment.rate}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <ListGroup.Item>
+                              <Button
+                                variant="danger"
+                                onClick={() => {
+                                  this.deleteComment(singleComment._id);
+                                }}
+                              >
+                                <MdDelete />
+                              </Button>
+                            </ListGroup.Item>
+                          </ListGroup.Item>
+                        </ListGroup>
+                      </Card>
+                    ))}
+                  </>
+                ) : (
+                  "No comments available"
+                )}
               </>
-            ) : (
-              "No comments available"
             )}
           </>
         )}
 
-        <AddComments bookAsin={this.props.bookAsin}></AddComments>
+        {this.props.bookAsin !== "" && (
+          <AddComments bookAsin={this.props.bookAsin}></AddComments>
+        )}
       </div>
     );
   }
