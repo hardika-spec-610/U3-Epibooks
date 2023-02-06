@@ -26,14 +26,14 @@ class AddComments extends Component {
       );
       console.log("post res", response);
       if (response.ok) {
-        // this.setState({
-        //   commentsObject: {
-        //     comment: [],
-        //     rate: "",
-        //   },
-        // });
+        this.props.updatePost();
         this.setState({ submit: true });
-        // alert("submitted :)");
+        this.setState({
+          commentsObject: {
+            comment: [],
+            rate: "",
+          },
+        });
       } else {
         alert("problem accepting your comment :(");
         console.log("elementID", this.state.commentsObject.elementId);

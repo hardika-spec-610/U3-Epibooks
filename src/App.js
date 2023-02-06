@@ -24,12 +24,12 @@ class App extends Component {
         <Welcome />
         <Container>
           <Row>
-            <Col xs={12} sm={12} md={6} lg={6}>
+            <Col xs={12} sm={12} md={6} lg={8}>
               <div>
                 <BookList selectedBook={this.selectedBook} />
               </div>
             </Col>
-            <Col xs={12} sm={12} md={6} lg={6}>
+            <Col xs={12} sm={12} md={6} lg={4}>
               {" "}
               <div className="sticky-top">
                 <CommentArea bookAsin={this.state.bookAsin} />

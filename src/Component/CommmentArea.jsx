@@ -66,7 +66,9 @@ class CommentArea extends Component {
       console.log(error);
     }
   };
-
+  updateCommentPost = () => {
+    this.getComments();
+  };
   componentDidMount() {
     this.getComments();
   }
@@ -134,7 +136,10 @@ class CommentArea extends Component {
         )}
 
         {this.props.bookAsin !== "" && (
-          <AddComments bookAsin={this.props.bookAsin}></AddComments>
+          <AddComments
+            bookAsin={this.props.bookAsin}
+            updatePost={this.updateCommentPost}
+          ></AddComments>
         )}
       </div>
     );
