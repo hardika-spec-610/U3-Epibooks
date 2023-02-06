@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import fantasy from "../books/fantasy.json";
 import history from "../books/history.json";
 import horror from "../books/horror.json";
@@ -15,7 +15,7 @@ class BookList extends Component {
   };
   render() {
     return (
-      <Container>
+      <>
         <Form.Group>
           <Form.Control
             type="text"
@@ -87,15 +87,18 @@ class BookList extends Component {
                   xs={12}
                   sm={12}
                   md={6}
-                  lg={3}
+                  lg={6}
                   className=" mb-lg-4 mb-md-4 mb-sm-3 mb-xs-3"
                 >
-                  <SingleBook singleBook={currentBook} />
+                  <SingleBook
+                    singleBook={currentBook}
+                    handleBook={this.props.selectedBook}
+                  />
                 </Col>
               );
             })}
         </Row>
-      </Container>
+      </>
     );
   }
 }

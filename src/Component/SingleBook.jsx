@@ -1,20 +1,26 @@
 import { Component } from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
-import CommentArea from "./CommmentArea";
 import "./componentStyles.css";
 
 class singleBook extends Component {
-  state = {
-    selected: false,
-  };
+  // state = {
+  //   selected: false,
+  // };
   render() {
     return (
+      // <Card
+      //   className="w-100 shadow-sm"
+      //   onClick={() => {
+      //     this.setState({ selected: !this.state.selected });
+      //   }}
+      //   style={{ backgroundColor: this.state.selected ? "#d0f222" : "white" }}
+      // >
       <Card
         className="w-100 shadow-sm"
         onClick={() => {
-          this.setState({ selected: !this.state.selected });
+          this.props.handleBook(this.props.singleBook.asin);
+          console.log("select", this.props.handleBook);
         }}
-        style={{ backgroundColor: this.state.selected ? "#d0f222" : "white" }}
       >
         <Card.Img
           variant="top"
@@ -41,9 +47,9 @@ class singleBook extends Component {
             </Card.Text>
           </Card.Body>
         </div>
-        {this.state.selected && (
+        {/* {this.state.selected && (
           <CommentArea bookAsin={this.props.singleBook.asin} />
-        )}
+        )} */}
         {/* short-circuit method */}
       </Card>
     );
